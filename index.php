@@ -30,7 +30,6 @@ body{
     overflow-x:hidden;
 }
 
-/* ===================== BACKGROUND ===================== */
 
 .background{
     position:fixed;
@@ -86,7 +85,6 @@ body{
     }
 }
 
-/* ===================== NAVBAR ===================== */
 
 .navbar{
     width:100%;
@@ -142,7 +140,7 @@ body{
     box-shadow:0 10px 30px rgba(34,197,94,0.3);
 }
 
-/* ===================== HERO ===================== */
+
 
 .hero{
     min-height:100vh;
@@ -223,7 +221,6 @@ body{
     transform:translateY(-5px);
 }
 
-/* ===================== FEATURES ===================== */
 
 .features{
     padding:100px 80px;
@@ -284,7 +281,6 @@ body{
     line-height:1.9;
 }
 
-/* ===================== STATS ===================== */
 
 .stats{
     padding:20px 80px 100px;
@@ -315,8 +311,6 @@ body{
     color:#cbd5e1;
 }
 
-/* ===================== CTA ===================== */
-
 .cta{
     padding:100px 20px;
 }
@@ -345,7 +339,7 @@ body{
     margin-bottom:35px;
 }
 
-/* ===================== FOOTER ===================== */
+
 
 .footer{
     padding:35px;
@@ -354,7 +348,6 @@ body{
     color:#94a3b8;
 }
 
-/* ===================== RESPONSIVE ===================== */
 
 @media(max-width:900px){
 
@@ -392,7 +385,7 @@ body{
 </head>
 <body>
 
-<!-- BACKGROUND -->
+
 
 <div class="background">
     <div class="glow glow1"></div>
@@ -400,7 +393,6 @@ body{
     <div class="glow glow3"></div>
 </div>
 
-<!-- NAVBAR -->
 
 <div class="navbar">
 
@@ -471,7 +463,6 @@ body{
 
 </section>
 
-<!-- FEATURES -->
 
 <section class="features" id="features">
 
@@ -522,7 +513,6 @@ body{
 
 </section>
 
-<!-- STATS -->
 
 <section class="stats" id="stats">
 
@@ -552,7 +542,6 @@ body{
 
 </section>
 
-<!-- CTA -->
 
 <section class="cta" id="contact">
 
@@ -574,8 +563,6 @@ body{
     </div>
 
 </section>
-
-<!-- FOOTER -->
 
 <div class="footer">
     © 2026 InternTrack • Internship Tracking System
