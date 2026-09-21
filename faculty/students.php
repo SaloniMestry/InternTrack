@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'faculty') {
     exit();
 }
 
-// Fetch only students from users table
+
 $sql = "SELECT * FROM users WHERE role='student' ORDER BY user_id DESC";
 $result = mysqli_query($conn, $sql);
 
@@ -68,7 +68,7 @@ include '../includes/sidebar.php';
 
                                 <td><?= htmlspecialchars($row['email']) ?></td>
 
-                                <!-- These may be NULL if not added yet -->
+                                
                                 <td><?= htmlspecialchars($row['contact'] ?? '-') ?></td>
 
                                 <td><?= htmlspecialchars($row['class'] ?? '-') ?></td>
