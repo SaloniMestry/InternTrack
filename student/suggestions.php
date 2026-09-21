@@ -9,7 +9,7 @@ if(!isset($_SESSION['user_id']) || $_SESSION['role'] != 'student'){
 
 $student_id = $_SESSION['user_id'];
 
-/* FETCH FACULTY SUGGESTIONS */
+
 $sql = "
 SELECT s.*, u.name AS faculty_name
 FROM suggestions s
