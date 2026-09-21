@@ -1,0 +1,244 @@
+<?php
+session_start();
+include 'config/db.php';
+
+$message = "";
+
+if(isset($_POST['register']))
+{
+    $name = trim($_POST['name']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+    $role = $_POST['role'];
+
+    // Hash password
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Check existing email
+    $check = mysqli_query($conn,
+        "SELECT * FROM users WHERE email='$email'");
+
+    if(mysqli_num_rows($check) > 0)
+    {
+        $message = "Email already exists!";
+    }
+    else
+    {
+        $sql = "INSERT INTO users(name,email,password,role)
+                VALUES('$name','$email','$hashed_password','$role')";
+
+        if(mysqli_query($conn,$sql))
+        {
+            $message = "Registration successful!";
+        }
+        else
+        {
+            $message = "Something went wrong!";
+        }
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Register - InternTrack</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#020617;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    overflow:hidden;
+}
+
+/* BACKGROUND */
+
+.bg{
+    position:fixed;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+
+.glow{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:0.5;
+}
+
+.glow1{
+    width:350px;
+    height:350px;
+    background:#3b82f6;
+    top:-100px;
+    left:-100px;
+}
+
+.glow2{
+    width:300px;
+    height:300px;
+    background:#22c55e;
+    bottom:-100px;
+    right:-80px;
+}
+
+/* CARD */
+
+.card{
+    width:420px;
+    padding:45px;
+    border-radius:28px;
+    background:rgba(15,23,42,0.75);
+    backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,0.08);
+    box-shadow:0 20px 60px rgba(0,0,0,0.45);
+    color:white;
+}
+
+.card h1{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.card p{
+    text-align:center;
+    color:#94a3b8;
+    margin-bottom:30px;
+}
+
+.input-group{
+    margin-bottom:20px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:8px;
+    color:#cbd5e1;
+}
+
+.input-group input,
+.input-group select{
+    width:100%;
+    padding:14px;
+    border:none;
+    outline:none;
+    border-radius:14px;
+    background:#0f172a;
+    color:white;
+    font-size:15px;
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+.btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(135deg,#3b82f6,#06b6d4);
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+.message{
+    text-align:center;
+    margin-bottom:20px;
+    color:#22c55e;
+}
+
+.bottom{
+    margin-top:20px;
+    text-align:center;
+    color:#94a3b8;
+}
+
+.bottom a{
+    color:#60a5fa;
+    text-decoration:none;
+}
+
+</style>
+</head>
+<body>
+
+<div class="bg">
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+</div>
+
+<div class="card">
+
+    <h1>Create Account</h1>
+
+    <p>Register to access InternTrack</p>
+
+    <?php if($message!=""){ ?>
+        <div class="message">
+            <?php echo $message; ?>
+        </div>
+    <?php } ?>
+
+    <form method="POST">
+
+        <div class="input-group">
+            <label>Full Name</label>
+            <input type="text" name="name" required>
+        </div>
+
+        <div class="input-group">
+            <label>Email</label>
+            <input type="email" name="email" required>
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" name="password" required>
+        </div>
+
+        <div class="input-group">
+            <label>Role</label>
+
+            <select name="role" required>
+                <option value="student">Student</option>
+                <option value="faculty">Faculty</option>
+            </select>
+        </div>
+
+        <button type="submit" name="register" class="btn">
+            Register
+        </button>
+
+    </form>
+
+    <div class="bottom">
+        Already have an account?
+        <a href="login.php">Login</a>
+    </div>
+
+</div>
+
+</body>
+</html>
