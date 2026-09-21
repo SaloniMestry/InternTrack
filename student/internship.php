@@ -12,9 +12,6 @@ $student_id = (int)$_SESSION['user_id'];
 $success = "";
 $error = "";
 
-/* =========================
-   SAVE INTERNSHIP DETAILS
-========================= */
 if (isset($_POST['save_internship'])) {
 
     $company_name    = mysqli_real_escape_string($conn, trim($_POST['company_name']));
@@ -28,7 +25,7 @@ if (isset($_POST['save_internship'])) {
     $mode            = mysqli_real_escape_string($conn, trim($_POST['mode']));
     $mentor          = mysqli_real_escape_string($conn, trim($_POST['mentor']));
 
-    // Check if internship already exists for this student
+    
     $check = mysqli_query($conn,
         "SELECT internship_id FROM internships WHERE student_id = $student_id LIMIT 1"
     );
@@ -68,9 +65,6 @@ if (isset($_POST['save_internship'])) {
     }
 }
 
-/* =========================
-   FETCH EXISTING DATA
-========================= */
 $internship = [];
 $result = mysqli_query($conn,
     "SELECT * FROM internships WHERE student_id = $student_id LIMIT 1"
@@ -80,9 +74,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     $internship = mysqli_fetch_assoc($result);
 }
 
-/* =========================
-   FETCH COMPANIES
-========================= */
+
 $sql = "SELECT * FROM internships WHERE student_id = '$student_id'";
 $result = mysqli_query($conn, $sql);
 
