@@ -2,7 +2,7 @@
 session_start();
 include('../config/db.php');
 
-// check login
+
 if(!isset($_SESSION['user_id'])){
     header("Location: ../login.php");
     exit();
@@ -17,21 +17,21 @@ if(isset($_POST['submit'])){
     $skills = $_POST['skills_learned'];
     $problems = $_POST['problems'];
 
-    // FILE UPLOAD
+    
     $file = $_FILES['report_file'];
 
     $filename = time() . "_" . basename($file['name']); // unique name
     $target = "../uploads/" . $filename;
 
-    // check file selected
+    
     if(empty($file['name'])){
         echo "<script>alert('Please select a file');</script>";
     } else {
 
-        // move file
+        
         if(move_uploaded_file($file['tmp_name'], $target)){
 
-            // insert into DB
+            
             $sql = "INSERT INTO weekly_reports 
                     (student_id, week_number, work_done, skills_learned, problems, report_file, submission_date)
                     VALUES 
