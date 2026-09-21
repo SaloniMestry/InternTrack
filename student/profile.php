@@ -9,11 +9,11 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'student') {
 
 $id = $_SESSION['user_id'];
 
-/* FETCH USER DATA */
+
 $result = mysqli_query($conn, "SELECT * FROM users WHERE user_id='$id'");
 $user = mysqli_fetch_assoc($result);
 
-/* SAVE PROFILE */
+
 if (isset($_POST['save'])) {
 
     $contact = $_POST['contact'];
