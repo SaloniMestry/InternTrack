@@ -2,7 +2,7 @@
 session_start();
 include '../config/db.php';
 
-// Check student login
+
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'student') {
     header("Location: ../login.php");
     exit();
@@ -12,13 +12,6 @@ $page_title = "Deadlines";
 include '../includes/header.php';
 include '../includes/sidebar.php';
 
-/*
-IMPORTANT:
-Your deadlines table does NOT contain the column `deadline_date`.
-It uses the column `due_date`.
-
-So we must sort only by `due_date`.
-*/
 $sql = "SELECT * FROM deadlines ORDER BY due_date ASC";
 
 $result = mysqli_query($conn, $sql);
