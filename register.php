@@ -11,10 +11,10 @@ if(isset($_POST['register']))
     $password = trim($_POST['password']);
     $role = $_POST['role'];
 
-    // Hash password
+
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    // Check existing email
+
     $check = mysqli_query($conn,
         "SELECT * FROM users WHERE email='$email'");
 
@@ -67,7 +67,6 @@ body{
     overflow:hidden;
 }
 
-/* BACKGROUND */
 
 .bg{
     position:fixed;
@@ -99,7 +98,6 @@ body{
     right:-80px;
 }
 
-/* CARD */
 
 .card{
     width:420px;
