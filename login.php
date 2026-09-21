@@ -16,14 +16,14 @@ if(isset($_POST['login']))
     {
         $row = mysqli_fetch_assoc($result);
 
-        // Verify hashed password
+        
         if(password_verify($password, $row['password']))
         {
             $_SESSION['user_id'] = $row['user_id'];
             $_SESSION['name'] = $row['name'];
             $_SESSION['role'] = $row['role'];
 
-            // Redirect based on role
+        
             if($row['role'] == 'student')
             {
                 header("Location: student/dashboard.php");
@@ -75,7 +75,6 @@ body{
     overflow:hidden;
 }
 
-/* BACKGROUND */
 
 .bg{
     position:fixed;
@@ -107,7 +106,6 @@ body{
     right:-80px;
 }
 
-/* CARD */
 
 .card{
     width:420px;
