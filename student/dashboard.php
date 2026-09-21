@@ -12,7 +12,7 @@ $page_title = "Student Dashboard";
 include '../includes/header.php';
 include '../includes/sidebar.php';
 
-// Dashboard statistics
+
 $student_id = $_SESSION['user_id'];
 
 $reports_count = mysqli_fetch_assoc(
@@ -23,7 +23,7 @@ $internship_count = mysqli_fetch_assoc(
     mysqli_query($conn, "SELECT COUNT(*) AS total FROM internships WHERE student_id = '$student_id'")
 )['total'] ?? 0;
 
-/* ✅ FIXED: suggestions instead of feedback */
+
 $feedback_count = mysqli_fetch_assoc(
     mysqli_query($conn, "SELECT COUNT(*) AS total FROM suggestions WHERE student_id = '$student_id'")
 )['total'] ?? 0;
